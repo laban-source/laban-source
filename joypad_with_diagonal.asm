@@ -4,7 +4,9 @@
 *****************************************************
 INCLUDE "hardware.inc"
 
-DEF _JOYPAD EQU _RAM
+Section "VARIABLES", WRAM0
+;joypad poll variable
+wJOYPAD: DS 1
 
 Section "Joypad", ROM0
 
@@ -31,34 +33,34 @@ ReadJoypad:
 	and $0F
 	or b
 	cpl ;complement as pressed = 0
-	ld [_JOYPAD], a;store in a variable _JOYPAD
+	ld [wJOYPAD], a;store in a variable wJOYPAD
 	ret
 
 DecodeInput:
 	;2 byte decode of joypad inputs
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_DOWN
 	call nz, MoveViewPortDown
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_UP
 	call nz, MoveViewPortUp
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_LEFT
 	call nz, MoveViewPortLeft
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_RIGHT
 	call nz, MoveViewPortRight
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_START
 	;do something here for START
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_SELECT
 	;call nz, PaletteSwitch
 	;do something here for SELECT
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_B
 	;do something for B
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_A
 	;do something for A
 	ret
