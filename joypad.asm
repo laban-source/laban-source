@@ -7,6 +7,7 @@ INCLUDE "hardware.inc"
 
 DEF _JOYPAD EQU _RAM
 
+Section "Joypad", ROM0
 ParseJoypad::
 	;read joypad
 .getdpad
