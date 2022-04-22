@@ -5,43 +5,45 @@
 
 INCLUDE "hardware.inc"
 
-DEF _JOYPAD EQU _RAM
+Section "VARIABLES", WRAM0
+;joypad poll variable
+wJOYPAD: DS 1
 
 Section "Joypad", ROM0
 ParseJoypad::
 	;read joypad
 .getdpad
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_DOWN
 	jr nz, .down
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_UP
 	jr nz, .up
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_LEFT
 	jr nz, .left
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_RIGHT
 	jr nz, .right
 
 .getbutton
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_START
 	;do something here for START
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_SELECT
 	;do something here for SELECT
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_B
 	;do something for B
-	ld a, [_JOYPAD]
+	ld a, [wJOYPAD]
 	and PADF_A
 	;do something for A
 	
-	;store joypad in b (in case need state), reset _JOYPAD
+	;store joypad in b (in case need state), reset wJOYPAD
 	ld b, a
 	xor a
-	ld [_JOYPAD], a
+	ld [wJOYPAD], a
 	;return b
 	ret
 
