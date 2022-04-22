@@ -1,7 +1,7 @@
-;***************************************
-;Joypad routine for no diagonal movement
+;******************************************************
+;Joypad routine with 4 degrees of freedom (no diagonal)
 ;Good for rpg games
-;***************************************
+;******************************************************
 
 INCLUDE "hardware.inc"
 
