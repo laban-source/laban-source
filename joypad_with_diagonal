@@ -1,7 +1,7 @@
-;*********************************************
-;Joypad example with all 8 degrees of freedom
+;****************************************************
+;Joypad routine example with all 8 degrees of freedom
 ;Good for shooter or side scrolling beat em up
-**********************************************
+*****************************************************
 
 
 Section "Joypad", ROM0
