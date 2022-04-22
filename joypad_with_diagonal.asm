@@ -2,7 +2,9 @@
 ;Joypad routine example with all 8 degrees of freedom
 ;Good for shooter or side scrolling beat em up
 *****************************************************
+INCLUDE "hardware.inc"
 
+DEF _JOYPAD EQU _RAM
 
 Section "Joypad", ROM0
 
